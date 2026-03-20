@@ -1,0 +1,17 @@
+[workspace]
+channels = ["https://prefix.dev/conda-forge"]
+platforms = ["linux-aarch64", "osx-arm64"]
+
+[tasks]
+segment = "python segment_webcam.py"
+
+[system-requirements]
+cuda = "12.9"
+libc = "2.34"
+
+[target.linux-aarch64.dependencies]
+pytorch-gpu = "2.10.*"
+arm-variant = { version = "*", build = "tegra"}
+
+[dependencies]
+opencv = "*"
