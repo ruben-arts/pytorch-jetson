@@ -441,7 +441,6 @@ environments:
       - conda: https://prefix.dev/conda-forge/linux-aarch64/libcurl-8.19.0-hc57f145_0.conda
       - conda: https://prefix.dev/conda-forge/linux-aarch64/libcusolver-11.7.5.82-hb5c4d24_2.conda
       - conda: https://prefix.dev/conda-forge/linux-aarch64/libcusparse-12.5.10.65-hb5c4d24_2.conda
-      - conda: https://prefix.dev/conda-forge/linux-aarch64/libde265-1.0.15-h2a328a1_0.conda
       - conda: https://prefix.dev/conda-forge/linux-aarch64/libdeflate-1.25-h1af38f5_0.conda
       - conda: https://prefix.dev/conda-forge/linux-aarch64/libdrm-2.4.125-he30d5cf_1.conda
       - conda: https://prefix.dev/conda-forge/linux-aarch64/libedit-3.1.20250104-pl5321h976ea20_0.conda
@@ -465,7 +464,6 @@ environments:
       - conda: https://prefix.dev/conda-forge/linux-aarch64/libgoogle-cloud-3.3.0-h04dcd46_1.conda
       - conda: https://prefix.dev/conda-forge/linux-aarch64/libgoogle-cloud-storage-3.3.0-h66d5b86_1.conda
       - conda: https://prefix.dev/conda-forge/linux-aarch64/libgrpc-1.78.1-heab1e18_0.conda
-      - conda: https://prefix.dev/conda-forge/linux-aarch64/libheif-1.19.7-gpl_hf91bf23_100.conda
       - conda: https://prefix.dev/conda-forge/linux-aarch64/libhwloc-2.12.2-default_ha470c98_1000.conda
       - conda: https://prefix.dev/conda-forge/linux-aarch64/libhwy-1.3.0-h81d0cf9_1.conda
       - conda: https://prefix.dev/conda-forge/linux-aarch64/libiconv-1.18-h90929bb_2.conda
@@ -600,8 +598,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/sympy-1.14.0-pyh2585a3b_106.conda
       - conda: https://prefix.dev/conda-forge/linux-aarch64/tbb-2022.3.0-hfefdfc9_2.conda
       - conda: https://prefix.dev/conda-forge/linux-aarch64/tk-8.6.13-noxft_h0dc03b3_103.conda
-      - conda: https://prefix.dev/ruben-arts/linux-aarch64/torchvision-0.25.0-cuda129_py312_hd2f6747_4.conda
-      - conda: https://prefix.dev/conda-forge/linux-aarch64/torchvision-extra-decoders-0.0.2-py312h0310fb8_6.conda
+      - conda: https://prefix.dev/ruben-arts/linux-aarch64/torchvision-0.25.0-cuda129_py312_h8f652b7_4.conda
       - conda: https://prefix.dev/conda-forge/noarch/traitlets-5.14.3-pyhd8ed1ab_1.conda
       - conda: https://prefix.dev/conda-forge/linux-aarch64/triton-3.6.0-cuda129py312h79a9213_1.conda
       - conda: https://prefix.dev/conda-forge/noarch/typing-extensions-4.15.0-h396c80c_0.conda
@@ -6666,16 +6663,6 @@ packages:
   license_family: Apache
   size: 570281
   timestamp: 1773203613980
-- conda: https://prefix.dev/conda-forge/linux-aarch64/libde265-1.0.15-h2a328a1_0.conda
-  sha256: 7345e775c7a51ed2d9da33389d6e24aeb38378b0f3c6dea13b0b88179c867718
-  md5: c5417cadddd73ace53e7152d8265f16a
-  depends:
-  - libgcc-ng >=12
-  - libstdcxx-ng >=12
-  license: LGPL-3.0-or-later
-  license_family: LGPL
-  size: 385337
-  timestamp: 1703088661961
 - conda: https://prefix.dev/conda-forge/linux-64/libdeflate-1.25-h17f619e_0.conda
   sha256: aa8e8c4be9a2e81610ddf574e05b64ee131fab5e0e3693210c9d6d2fba32c680
   md5: 6c77a605a7a689d17d4819c0f8ac9a00
@@ -7552,21 +7539,6 @@ packages:
   license_family: APACHE
   size: 11546515
   timestamp: 1774013326223
-- conda: https://prefix.dev/conda-forge/linux-aarch64/libheif-1.19.7-gpl_hf91bf23_100.conda
-  sha256: e29f5c93f30c0d5b87b68d990221492054b716e26ec59d1783531fcf0595da6a
-  md5: 19def7dc71bbb7068cfcb83fce033f6b
-  depends:
-  - aom >=3.9.1,<3.10.0a0
-  - dav1d >=1.2.1,<1.2.2.0a0
-  - libavif16 >=1.2.0,<2.0a0
-  - libde265 >=1.0.15,<1.0.16.0a0
-  - libgcc >=13
-  - libstdcxx >=13
-  - x265 >=3.5,<3.6.0a0
-  license: LGPL-3.0-or-later
-  license_family: LGPL
-  size: 593964
-  timestamp: 1741306837292
 - conda: https://prefix.dev/conda-forge/linux-64/libhwloc-2.12.2-default_hafda6a7_1000.conda
   sha256: 2cf160794dda62cf93539adf16d26cfd31092829f2a2757dbdd562984c1b110a
   md5: 0ed3aa3e3e6bc85050d38881673a692f
@@ -14101,51 +14073,33 @@ packages:
   license_family: BSD
   size: 1483219
   timestamp: 1774206041434
-- conda: https://prefix.dev/ruben-arts/linux-aarch64/torchvision-0.25.0-cuda129_py312_hd2f6747_4.conda
-  sha256: 7865a0e3e070e0e2fcb2abaa2098d4ba4b6ec9b66e8f94c20296b3087171a357
-  md5: ffb8555f67e35cd71c32ea3634f39f05
+- conda: https://prefix.dev/ruben-arts/linux-aarch64/torchvision-0.25.0-cuda129_py312_h8f652b7_4.conda
+  sha256: f8fbbdb08f0576020d1a66f642d326f34e86fd3937cd4177bb23dd88a36ebc2a
+  md5: 351c861f9198e0034e4a3a45ad8584a8
   depends:
   - python
   - pytorch * cuda*
   - pillow >=5.3.0,!=8.3.0,!=8.3.1
-  - torchvision-extra-decoders
-  - arm-variant * tegra
+  - libstdcxx >=14
   - libgcc >=14
   - cuda-version >=12.9,<13
-  - __glibc >=2.34,<3.0.a0
-  - libstdcxx >=14
-  - python_abi 3.12.* *_cp312
-  - libjpeg-turbo >=3.1.2,<4.0a0
-  - libnvjpeg >=12.4.0.76,<13.0a0
-  - pytorch >=2.10.0,<2.11.0a0
-  - libtorch >=2.10.0,<2.11.0a0
-  - libcusparse >=12.5.10.65,<13.0a0
-  - libcudnn >=9.10.2.21,<10.0a0
-  - libpng >=1.6.55,<1.7.0a0
-  - numpy >=1.23,<3
-  - libwebp-base >=1.6.0,<2.0a0
+  - arm-variant * tegra
   - libcusolver >=11.7.5.82,<12.0a0
-  - giflib >=5.2.2,<5.3.0a0
-  - libcublas >=12.9.1.4,<13.0a0
-  license: BSD-3-Clause
-  size: 3221310
-  timestamp: 1774017804621
-- conda: https://prefix.dev/conda-forge/linux-aarch64/torchvision-extra-decoders-0.0.2-py312h0310fb8_6.conda
-  sha256: c7af8824558347c7248ea89b37b03dd582936b6332b028c97ba41b6596cc978c
-  md5: 4f67eec294be7d75f8703987e14d954f
-  depends:
-  - python
-  - libgcc >=14
-  - libstdcxx >=14
-  - python 3.12.* *_cpython
   - pytorch >=2.10.0,<2.11.0a0
   - libtorch >=2.10.0,<2.11.0a0
+  - giflib >=5.2.2,<5.3.0a0
+  - libnvjpeg >=12.4.0.76,<13.0a0
+  - libcusparse >=12.5.10.65,<13.0a0
+  - libpng >=1.6.55,<1.7.0a0
+  - libwebp-base >=1.6.0,<2.0a0
   - python_abi 3.12.* *_cp312
-  - libavif16 >=1.3.0,<2.0a0
-  - libheif >=1.19.7,<1.20.0a0
-  license: LGPL-2.1-only
-  size: 139431
-  timestamp: 1769464627396
+  - libcublas >=12.9.1.4,<13.0a0
+  - libjpeg-turbo >=3.1.2,<4.0a0
+  - numpy >=1.23,<3
+  - libcudnn >=9.10.2.21,<10.0a0
+  license: BSD-3-Clause
+  size: 1898516
+  timestamp: 1774448110595
 - conda: https://prefix.dev/conda-forge/noarch/traitlets-5.14.3-pyhd8ed1ab_1.conda
   sha256: f39a5620c6e8e9e98357507262a7869de2ae8cc07da8b7f84e517c9fd6c2b959
   md5: 019a7385be9af33791c989871317e1ed

@@ -22,7 +22,7 @@ rerun-sdk = ">=0.30.2,<0.31"
 
 [feature.custom-build]
 channels = ["https://prefix.dev/ruben-arts", "https://prefix.dev/conda-forge"]
-target.linux-aarch64.dependencies = { torchvision = { version = "==0.25.0", channel = "https://prefix.dev/ruben-arts" } }
+target.linux-aarch64.dependencies = { torchvision = { version = "==0.25.0", build = "cuda129_py312_h8f652b7*", channel = "https://prefix.dev/ruben-arts" } }
 
 [environments]
 custom = ["custom-build"]
