@@ -1,9 +1,10 @@
 [workspace]
-channels = ["https://prefix.dev/ruben-arts", "https://prefix.dev/conda-forge"]
-platforms = ["linux-aarch64", "osx-arm64"]
+channels = ["https://prefix.dev/conda-forge"]
+platforms = ["linux-aarch64", "osx-arm64", "linux-64", "win-64"]
 
 [tasks]
 segment = "python segment_webcam.py"
+skeleton = "python pose.py"
 
 [system-requirements]
 cuda = "12.9"
@@ -12,7 +13,9 @@ libc = "2.34"
 [target.linux-aarch64.dependencies]
 pytorch-gpu = "2.10.*"
 arm-variant = { version = "*", build = "tegra"}
+torchvision = "==0.25.0"
 
 [dependencies]
 opencv = "*"
 torchvision = "==0.25.0"
+rerun-sdk = ">=0.30.2,<0.31"
