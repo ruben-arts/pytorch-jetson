@@ -198,7 +198,10 @@ def main():
     # --- Rerun ---
     rr.init("pose_estimation", spawn=False)
     if args.rerun_addr:
-        rr.connect_grpc(args.rerun_addr)
+        if args.rerun_addr == "true":
+            rr.connect_grpc()
+        else:
+            rr.connect_grpc(args.rerun_addr)
         print(f"[rerun] Streaming to {args.rerun_addr}")
     else:
         rr.spawn()
