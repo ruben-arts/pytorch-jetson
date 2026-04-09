@@ -116,13 +116,13 @@ def draw_poses(frame_bgr, boxes, kp_xy, kp_conf, scores):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="YOLOv8-pose → cv2 window")
+    parser = argparse.ArgumentParser(description="YOLO-pose → cv2 window")
     parser.add_argument("--camera",      type=int,   default=0,           help="cv2 camera index")
     parser.add_argument("--width",       type=int,   default=640)
     parser.add_argument("--height",      type=int,   default=480)
     parser.add_argument("--score",       type=float, default=0.5,         help="Detection confidence threshold")
     parser.add_argument("--infer-width", type=int,   default=320,         help="Inference resolution width (multiple of 32)")
-    parser.add_argument("--model",       type=str,   default="yolov8n-pose.pt", help="YOLO model file")
+    parser.add_argument("--model",       type=str,   default="yolov26n-pose.pt", help="YOLO model file")
     args = parser.parse_args()
 
     print(f"[pose] Loading {args.model}...")

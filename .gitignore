@@ -2,4 +2,10 @@
 .pixi/*
 !.pixi/config.toml
 
-yolo*.pt
+# model weights (downloaded automatically)
+*.pt
+
+# python
+__pycache__/
+*.pyc
+*.pyo
