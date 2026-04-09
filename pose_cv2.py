@@ -86,8 +86,6 @@ def load_model(device: torch.device):
     model = keypointrcnn_resnet50_fpn(weights=weights)
     model.to(device)
     model.eval()
-    if device.type == "cuda":
-        model.half()
     return model
 
 
@@ -99,8 +97,6 @@ def run_inference(model, frame_bgr, device, score_thresh=0.7, infer_width=320):
 
     frame_rgb = cv2.cvtColor(small, cv2.COLOR_BGR2RGB)
     tensor = torch.from_numpy(frame_rgb).permute(2, 0, 1).float() / 255.0
-    if device.type == "cuda":
-        tensor = tensor.half()
     with torch.no_grad():
         outputs = model([tensor.to(device)])
     out = outputs[0]
