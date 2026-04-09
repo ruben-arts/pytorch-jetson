@@ -13,7 +13,7 @@ libc = "2.34"
 [target.linux-aarch64.dependencies]
 pytorch-gpu = "2.10.*"
 arm-variant = { version = "*", build = "tegra"}
-torchvision = "==0.25.0"
+torchvision = { version = "==0.25.0", build-number = "5"}
 
 [dependencies]
 opencv = "*"
@@ -21,9 +21,3 @@ torchvision = "==0.25.0"
 rerun-sdk = ">=0.30.2,<0.31"
 ultralytics = ">=8.4.36,<9"
 
-[feature.custom-build]
-channels = ["https://prefix.dev/ruben-arts", "https://prefix.dev/conda-forge"]
-target.linux-aarch64.dependencies = { torchvision = { version = "==0.25.0", build = "cuda129_py312_h8f652b7*", channel = "https://prefix.dev/ruben-arts" } }
-
-[environments]
-custom = ["custom-build"]
