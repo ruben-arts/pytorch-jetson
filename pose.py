@@ -89,31 +89,54 @@ def load_model(device: torch.device):
     model = keypointrcnn_resnet50_fpn(weights=weights)
     model.to(device)
     model.eval()
+    if device.type == "cuda":
+        model.half()
     return model
 
 
-def run_inference(model, frame_bgr, device, score_thresh=0.7):
+def run_inference(model, frame_bgr, device, score_thresh=0.7, infer_width=320):
     """Run KeypointRCNN on a single BGR frame, return detections."""
-    frame_rgb = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2RGB)
+    h, w = frame_bgr.shape[:2]
+    infer_height = int(h * infer_width / w)
+    small = cv2.resize(frame_bgr, (infer_width, infer_height), interpolation=cv2.INTER_LINEAR)
+
+    frame_rgb = cv2.cvtColor(small, cv2.COLOR_BGR2RGB)
     tensor = torch.from_numpy(frame_rgb).permute(2, 0, 1).float() / 255.0
+    if device.type == "cuda":
+        tensor = tensor.half()
     with torch.no_grad():
         outputs = model([tensor.to(device)])
     out = outputs[0]
 
+    if device.type == "cuda":
+        torch.cuda.empty_cache()
+
     keep = out["scores"] > score_thresh
-    boxes     = out["boxes"][keep].cpu().numpy()
-    keypoints = out["keypoints"][keep].cpu().numpy()       # [N, 17, 3] (x, y, vis)
-    scores    = out["scores"][keep].cpu().numpy()
+    boxes     = out["boxes"][keep].cpu().float().numpy()
+    keypoints = out["keypoints"][keep].cpu().float().numpy()   # [N, 17, 3] (x, y, vis)
+    scores    = out["scores"][keep].cpu().float().numpy()
+
+    # Scale keypoints and boxes back to original frame size
+    scale_x = w / infer_width
+    scale_y = h / infer_height
+    if len(keypoints) > 0:
+        keypoints[:, :, 0] *= scale_x
+        keypoints[:, :, 1] *= scale_y
+    if len(boxes) > 0:
+        boxes[:, [0, 2]] *= scale_x
+        boxes[:, [1, 3]] *= scale_y
+
     return boxes, keypoints, scores
 
 
-def log_frame(frame_bgr, boxes, keypoints, scores, frame_idx: int):
+def log_frame(frame_bgr, boxes, keypoints, scores, frame_idx: int, log_image_every: int = 3):
     """Log everything to Rerun for this frame."""
     rr.set_time("frame", sequence=frame_idx)
 
-    # --- Raw camera image ---
-    frame_rgb = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2RGB)
-    rr.log("camera/image", rr.Image(frame_rgb))
+    # --- Raw camera image (throttled to reduce bandwidth/memory pressure) ---
+    if frame_idx % log_image_every == 0:
+        frame_rgb = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2RGB)
+        rr.log("camera/image", rr.Image(frame_rgb))
 
     # --- Per-person skeleton ---
     for person_idx, (kps, score) in enumerate(zip(keypoints, scores)):
@@ -189,6 +212,7 @@ def main():
     parser.add_argument("--height",     type=int,   default=480)
     parser.add_argument("--score",      type=float, default=0.7,        help="Detection confidence threshold")
     parser.add_argument("--fps-limit",  type=int,   default=30,         help="Max inference FPS")
+    parser.add_argument("--infer-width", type=int,  default=320,        help="Resize width before inference (smaller = less memory)")
     args = parser.parse_args()
 
     # --- Device ---
@@ -237,11 +261,12 @@ def main():
 
             now = time.time()
             if now - t_last < min_dt:
+                time.sleep(0.005)
                 continue
             t_last = now
 
             boxes, keypoints, scores = run_inference(
-                model, frame, device, args.score
+                model, frame, device, args.score, args.infer_width
             )
             log_frame(frame, boxes, keypoints, scores, frame_idx)
 
