@@ -180,7 +180,6 @@ def log_frame(frame_bgr, boxes, keypoints, scores, frame_idx: int, log_image_eve
 
         # Confidence label near bounding box
         if len(boxes) > person_idx:
-            x1, y1 = boxes[person_idx][:2]
             rr.log(
                 f"{entity}/label",
                 rr.TextLog(f"person {person_idx}  {score:.2f}"),
