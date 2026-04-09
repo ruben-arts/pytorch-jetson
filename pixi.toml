@@ -19,6 +19,7 @@ torchvision = "==0.25.0"
 opencv = "*"
 torchvision = "==0.25.0"
 rerun-sdk = ">=0.30.2,<0.31"
+ultralytics = ">=8.4.36,<9"
 
 [feature.custom-build]
 channels = ["https://prefix.dev/ruben-arts", "https://prefix.dev/conda-forge"]
