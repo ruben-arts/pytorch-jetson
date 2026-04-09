@@ -186,7 +186,7 @@ def main():
     parser.add_argument("--height",      type=int,   default=480)
     parser.add_argument("--score",       type=float, default=0.5,         help="Detection confidence threshold")
     parser.add_argument("--infer-width", type=int,   default=320,         help="Inference resolution width (multiple of 32)")
-    parser.add_argument("--model",       type=str,   default="yolov26n-pose.pt", help="YOLO model file")
+    parser.add_argument("--model",       type=str,   default="yolo26n-pose.pt", help="YOLO model file")
     parser.add_argument("--fps",         type=float, default=30.0,        help="Target publish rate in Hz")
     args = parser.parse_args()
 
