@@ -2,6 +2,10 @@
 
 Real-time computer vision demos optimised for NVIDIA Jetson devices using [pixi](https://pixi.sh) for dependency management.
 
+
+https://github.com/user-attachments/assets/69d453bd-f690-4c47-9cbd-0db14f0d4ddc
+
+
 ## Demos
 
 | Script | Task | Output |
